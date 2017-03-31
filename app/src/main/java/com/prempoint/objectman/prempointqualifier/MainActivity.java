@@ -109,13 +109,25 @@ public class MainActivity extends AppCompatActivity {
 
 
         if(anEventSource == null ){
-            throw new NullPointerException("anEventSource is null !!");
+
+					Toast toast = makeText(getApplicationContext(),"@string/null_pointer_fatal_error",
+									LENGTH_LONG);
+
+					toast.setGravity(Gravity.CENTER, 0, 0);
+
+					toast.show();
+					return;
         }
 
         if(!(anEventSource instanceof  Button)){
 
-            throw new IllegalArgumentException("Argument passed to scanButton_clickHandler(): is not a Button");
 
+					Toast toast = makeText(getApplicationContext(),"@string/illegal_argument_fatal_error_message",
+									LENGTH_LONG);
+
+					toast.setGravity(Gravity.CENTER, 0, 0);
+
+					toast.show();
 
         }
 
