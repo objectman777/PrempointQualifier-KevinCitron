@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 							0x03, 0x50, 0x01, 0x02, // an unknown data type won't cause trouble
 			};
 
-			PremPTBLEScanResult scanRes = new PremPTBLEScanResult("LG G Vista",(double) 24,scanRecord);
+			PremPTBLEScanResult scanRes = new PremPTBLEScanResult("LG G Vista",24.7f,scanRecord);
 
 			retVal.add(scanRes);
 
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(anEventSource == null ){
 
-					Toast toast = makeText(getApplicationContext(),"@string/null_pointer_fatal_error",
+					Toast toast = makeText(getApplicationContext(),getString(R.string.null_pointer_fatal_error),
 									LENGTH_LONG);
 
 					toast.setGravity(Gravity.CENTER, 0, 0);
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         if(!(anEventSource instanceof  Button)){
 
 
-					Toast toast = makeText(getApplicationContext(),"@string/illegal_argument_fatal_error_message",
+					Toast toast = makeText(getApplicationContext(),getString(R.string.illegal_argument_fatal_error),
 									LENGTH_LONG);
 
 					toast.setGravity(Gravity.CENTER, 0, 0);
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
         //: Comment this out, to test, that the sercice works as expected
         if(myBluetoothAdapter == null){
 
-					Toast toast = makeText(getApplicationContext(),"Your device does not support Bluetooth",
+					Toast toast = makeText(getApplicationContext(),getString(R.string.no_bt_adapter_error_message),
                     LENGTH_LONG);
 
 					toast.setGravity(Gravity.CENTER, 0, 0);
@@ -147,27 +147,26 @@ public class MainActivity extends AppCompatActivity {
 					toast.show();
             return;
 
-        }
+        } //End of conditional which check if a BT Adapter is available.
 
         if(!myBluetoothAdapter.isEnabled()){
 
-					Toast toast = makeText(getApplicationContext(),"Turn on your Bluetooth service to proceed",
+					Toast toast = makeText(getApplicationContext(),getString(R.string.bt_not_turnedon_error_message),
 									LENGTH_LONG);
 					toast.setGravity(Gravity.CENTER, 0, 0);
 					toast.show();
 					return;
-				}
+				} //: End of BT enabled conditional
 
-			if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
+				if(!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
 
-				Toast toast = makeText(getApplicationContext(),"BLE Not Supported",
-								LENGTH_LONG);
-				toast.setGravity(Gravity.CENTER, 0, 0);
-				toast.show();
-				return;
-
-
-			}
+					Toast toast = makeText(getApplicationContext(),getString(R.string.ble_unsupported_error_message),
+									LENGTH_LONG);
+					toast.setGravity(Gravity.CENTER, 0, 0);
+					toast.show();
+					return;
+				} //: End of BLE Feature Conditional
+				scanResultArrayAdapter.clear();
 				Button buttonView  = (Button) anEventSource ;
 				buttonView.setEnabled(false);
 				buttonView.setText(scanButtonSelectedText);
@@ -219,12 +218,13 @@ public class MainActivity extends AppCompatActivity {
             String strMsg =  intent.getStringExtra(getString(PremPTBTScannerMessageKey));
 
             Log.i(TAG, "Got message: " + strMsg);
+					//: Checks for end of service
             if(strMsg.equalsIgnoreCase(getResources().getString(R.string.PremPTBTScannerServiceEnd))){
                 Log.i(TAG,"resetting controls to initial state");
 								if(scanResultArrayAdapter.isEmpty()){
 										//: The BLE scan must have turned up nothing.
 										//: Let notify the user of such
-									Toast toast = makeText(getApplicationContext(),"The BLE Scan found (0) devices",
+									Toast toast = makeText(getApplicationContext(),getString(R.string.ble_scan_no_items_found),
 													LENGTH_LONG);
 									toast.setGravity(Gravity.CENTER, 0, 0);
 									toast.show();

@@ -193,7 +193,7 @@ public class PremPTBTScannerService extends Service {
 		public void onScanResult(int callbackType, ScanResult aScanResult) {
 
 			BluetoothDevice btDevice = aScanResult.getDevice();
-			PremPTBLEScanResult premPtScanRes = new PremPTBLEScanResult(btDevice.getName(),(double)aScanResult.getRssi(),aScanResult.getScanRecord().getBytes());
+			PremPTBLEScanResult premPtScanRes = new PremPTBLEScanResult(btDevice.getName(),(float)aScanResult.getRssi(),aScanResult.getScanRecord().getBytes());
 
 
 			Log.i("callbackType", String.valueOf(callbackType));

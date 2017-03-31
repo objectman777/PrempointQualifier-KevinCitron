@@ -10,16 +10,16 @@ import java.io.Serializable;
 
 public class PremPTBLEScanResult implements Serializable {
 
-	public PremPTBLEScanResult(String aDeviceName,Double aSigStrengthVal,byte[] aScanRecordID){
+	public PremPTBLEScanResult(String aDeviceName,Float aSigStrengthVal,byte[] aScanRecordID){
 			this.setDeviceName(aDeviceName);
 			this.setSignalStength(aSigStrengthVal);
 			this.setScanRecordID(aScanRecordID);
 	}
-	public Double getSignalStength() {
+	public Float getSignalStength() {
 		return signalStength_;
 	}
 
-	public void setSignalStength(Double signalStength) {
+	public void setSignalStength(Float signalStength) {
 		this.signalStength_ = signalStength;
 	}
 
@@ -57,7 +57,7 @@ public class PremPTBLEScanResult implements Serializable {
 		return (this.getDeviceName() != null && this.getScanRecordID() != null);
 	}
 	private String deviceName_;
-	private Double signalStength_;
+	private Float signalStength_;
 	private	byte[] scanRecordID_;
 
 }

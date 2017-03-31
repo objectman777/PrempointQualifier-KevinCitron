@@ -1,5 +1,5 @@
 <resources>
-    
+
     <string name="app_name">Prempoint Qualifier - Kevin Citron</string>
     <string name="action_settings">Settings</string>
     <string name="scanButtonInitialStateText">Start Scan</string>
@@ -13,4 +13,8 @@
     <string name="null_pointer_fatal_error">Fatal Error - 0</string>
     <string name="illegal_argument_fatal_error">Fatal Error - 1</string>
     <string name="ble_scan_no_items_found">The BLE Scan Resulted in 0 items found</string>
+    <string name="no_bt_adapter_error_message">BlueTooth is unsupported on your device</string>
+    <string name="bt.not_turnedon_error_message">Turn on BlueTooth to proceed</string>
+    <string name="ble_unsupported_error_message">BLE Scans are unsupported on your device</string>
+
 </resources>
