@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.prempoint.objectman.prempointqualifier.MainActivityFragment"
+    tools:showIn="@layout/activity_main">
+
+    <Button
+        android:id="@+id/scanButton"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="116dp"
+        android:layout_height="48dp"
+        android:background="@drawable/premroundedbuttonskin"
+        android:onClick="scanButton_clickHandler"
+        android:text="@string/scanButtonInitialStateText"
+        android:textStyle="bold"
+        android:textColor="@color/premscanbuttoncolor"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginEnd="5dp" />
+
+
+    <TextView
+        android:id="@+id/text_id"
+        android:layout_width="200dp"
+        android:layout_height="220dp"
+        android:text="@string/PremPTBTScannerOutputListHeader"
+        android:textColor="@android:color/background_dark"
+        android:textColorHighlight="@android:color/primary_text_dark"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="25dp"
+        android:textSize="20dp"/>
+
+
+
+    <ListView
+        android:id="@+id/scannerOutputList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/premlistviewskin1"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scanButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="9dp"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="3dp"
+        android:divider="#00abfb"
+        android:dividerHeight="1dp"
+        tools:layout_editor_absoluteX="8dp" />
+
+
+
+
+
+
+
+
+
+
+</android.support.constraint.ConstraintLayout>

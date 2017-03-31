@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Prempoint Qualifier - Kevin Citron</string>
+    <string name="action_settings">Settings</string>
+    <string name="scanButtonInitialStateText">Start Scan</string>
+    <string name="scanButtonSelectedText">Scanning</string>
+    <string name="PremPTBTScannerDataAvailableEvent">premPTBTScannerDataAvailable</string>
+    <string name="PremPTBTScannerServiceEnd">serviceEnding</string>
+    <string name="PremPTBTScannerMessageKey">premPTBTScannerMessage</string>
+    <string name="PremPTBTScannerOutputListHeader">BLUE TOOTH OUTPUT</string>
+    <string name="PremPTBTNormalDataSend">premPTBTNormalDataSend</string>
+    <string name="PremPTBTScannerDataKey">scanResultDataKey</string>
+</resources>
