@@ -53,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
         scannerOutputList = (ListView) findViewById(R.id.scannerOutputList);
 				scanResultArrayAdapter= new BLEScanResultAdapter(this.getTestDataModelCollection(),getApplicationContext());
-
-
         scannerOutputList.setAdapter(scanResultArrayAdapter);
     }
 
@@ -207,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 		//schedule the timer, after the first 5000ms the TimerTask will run every 10000ms
-		blinkingBtnTimer.schedule(blinkingBtnTimerTask, 0, (long)(1.5 * 1000)); //
+		blinkingBtnTimer.schedule(blinkingBtnTimerTask, 0, (long) BLINK_DELAY); //
 
 	}
 
@@ -349,6 +347,7 @@ public class MainActivity extends AppCompatActivity {
 
 		private TimerTask blinkingBtnTimerTask;
 		final Handler blinkinBtnHandler = new Handler();
+		final static double BLINK_DELAY = (1.4 * 1000);
 
 	private ArrayAdapter<PremPTBLEScanResult> scanResultArrayAdapter;
     private static final String TAG = "MainActivity";
