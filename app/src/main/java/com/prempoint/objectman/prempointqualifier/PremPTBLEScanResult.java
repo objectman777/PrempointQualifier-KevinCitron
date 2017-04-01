@@ -8,6 +8,7 @@ import java.io.Serializable;
  * Created by objectman on 3/31/17.
  */
 
+
 public class PremPTBLEScanResult implements Serializable {
 
 	public PremPTBLEScanResult(String aDeviceName,Float aSigStrengthVal,byte[] aScanRecordID){
