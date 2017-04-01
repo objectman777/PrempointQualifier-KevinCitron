@@ -240,6 +240,7 @@ public class PremPTBTScannerService extends Service {
 		return null;
 	}
 
+	
 	private BluetoothAdapter mBluetoothAdapter;
 	private int REQUEST_ENABLE_BT = 1;
 	private Handler mHandler;
