@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -27,6 +28,8 @@ import android.widget.Toast;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static android.widget.Toast.*;
 import static com.prempoint.objectman.prempointqualifier.R.color.premscanbuttoncolor;
@@ -167,21 +170,91 @@ public class MainActivity extends AppCompatActivity {
 					return;
 				} //: End of BLE Feature Conditional
 				scanResultArrayAdapter.clear();
-				Button buttonView  = (Button) anEventSource ;
-				buttonView.setEnabled(false);
-				buttonView.setText(scanButtonSelectedText);
-				buttonView.setTextColor(getApplication().getResources().getColor(R.color.premScanButtonSelectedColor));
-            buttonView.setBackground(getResources().getDrawable(premscaninprogbtnskin,null));
-            //: Create the intent to statt the BlueToothService
-            startService(new Intent(MainActivity.this,PremPTBTScannerService.class));
-				Log.i(TAG,"Started BLE Scanner Service");
 
+				//: The scanBtn instance
+				//: will later be used, to
+				//: create a blinking effect.
+				//: every cycle through the timer task
+				//: the text color, of the button will alternate
+				//: between two colors
+				scanBtn  = (Button) anEventSource ;
+
+				scanBtn.setEnabled(false);
+				scanBtn.setText(scanButtonSelectedText);
+				scanBtn.setTextColor(getApplication().getResources().getColor(R.color.premScanButtonSelectedColor));
+				scanBtn.setBackground(getResources().getDrawable(premscaninprogbtnskin,null));
+            //: Create the intent to start the BlueToothService
+				startService(new Intent(MainActivity.this,PremPTBTScannerService.class));
+				Log.i(TAG,"Started BLE Scanner Service");
+				this.startButtonBlink();
 
 
 
     }
 
-    private void resetControlsToInitialState() {
+	public void startButtonBlink() {
+
+		//set a new Timer
+
+		blinkingBtnTimer = new Timer();
+
+
+
+		//initialize the TimerTask's job
+
+		initializeBlinkingBtnTimerTask();
+
+
+
+		//schedule the timer, after the first 5000ms the TimerTask will run every 10000ms
+		blinkingBtnTimer.schedule(blinkingBtnTimerTask, 0, (long)(1.5 * 1000)); //
+
+	}
+
+	public void initializeBlinkingBtnTimerTask() {
+
+
+		blinkingBtnTimerTask = new TimerTask() {
+
+			public void run() {
+
+
+				//use a handler to run a toast that shows the current timestamp
+
+				blinkinBtnHandler.post(new Runnable() {
+
+					public void run() {
+
+						if(scanBtn.getCurrentTextColor() == getResources().getColor(R.color.premScanButtonFlashOffColor)){
+							scanBtn.setTextColor(getResources().getColor(R.color.premScanButtonFlashOnColor));
+						}
+						else {
+							scanBtn.setTextColor(getResources().getColor(R.color.premScanButtonFlashOffColor));
+
+						}
+
+
+					}
+				});
+			}
+		};
+	}
+
+
+
+
+
+	private void stopButtonBlink(){
+
+		if(blinkingBtnTimer != null) {
+			blinkingBtnTimer.cancel();
+			blinkingBtnTimer = null;
+		}
+
+	}
+
+
+	private void resetControlsToInitialState() {
 
         //: The only control to reset is the scan button
         Button scanButton = (Button) findViewById(R.id.scanButton);
@@ -191,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
             Log.i(TAG, "scanButton not found !!");
             return;
         }
-
+				this.stopButtonBlink();
         scanButton.setEnabled(true);
         scanButton.setText(scanButtonInitialStateText);
         scanButton.setTextColor(getApplication().getResources().getColor(premscanbuttoncolor));
@@ -271,7 +344,13 @@ public class MainActivity extends AppCompatActivity {
 
     private BluetoothAdapter myBluetoothAdapter;
     private ListView scannerOutputList;
-    private ArrayAdapter<PremPTBLEScanResult> scanResultArrayAdapter;
+		private Timer blinkingBtnTimer;
+		private Button scanBtn;// Holding on to a reference, to eliminate he need for repetitive resource lookups
+
+		private TimerTask blinkingBtnTimerTask;
+		final Handler blinkinBtnHandler = new Handler();
+
+	private ArrayAdapter<PremPTBLEScanResult> scanResultArrayAdapter;
     private static final String TAG = "MainActivity";
 
 }

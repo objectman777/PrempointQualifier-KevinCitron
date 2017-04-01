@@ -5,4 +5,9 @@
     <color name="colorAccent">#FF4081</color>
     <color name="premScanButtonSelectedColor">#48484f</color>
     <color name="premScanButtonSelectedBackgroundColor">#c5d772</color>
+    <color name="premScanButtonFlashOnColor">#ff0000</color>
+    <color name="premScanButtonFlashOffColor">#0d0719</color>
+
+
+
 </resources>
