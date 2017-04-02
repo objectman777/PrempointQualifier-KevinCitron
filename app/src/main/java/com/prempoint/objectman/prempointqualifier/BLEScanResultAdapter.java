@@ -18,6 +18,9 @@ import java.util.List;
 
 /**
  * Created by objectman on 3/31/17.
+ * This concept, is, exactly the same
+ * as the ActionScript list item renderer.
+ * So. This is a piece of cake
  */
 
 public class BLEScanResultAdapter extends ArrayAdapter {
@@ -69,13 +72,13 @@ public class BLEScanResultAdapter extends ArrayAdapter {
 		//: Custom font stuff, just for fun
 		Typeface typeface= Typeface.createFromAsset(getContext().getAssets(),getContext().getString(R.string.DEFAULT_LIST_ITEM_FONT1));
 		viewHolder.txtDeviceName.setTypeface(typeface);
-		viewHolder.txtDeviceName.setTextSize(TypedValue.COMPLEX_UNIT_SP,getContext().getResources().getInteger(R.integer.LIST_ITEM_DEVICENAME_FONT_SIZE));
+		viewHolder.txtDeviceName.setTextSize(TypedValue.COMPLEX_UNIT_SP,LIST_ITEM_DEVICENAME_FONT_SIZE);
 
 		viewHolder.txtRSSIValue.setTypeface(typeface);
-		viewHolder.txtRSSIValue.setTextSize(TypedValue.COMPLEX_UNIT_SP,getContext().getResources().getInteger(R.integer.LIST_ITEM_SIGNAL_STRENGTH_FONT_SIZE));
+		viewHolder.txtRSSIValue.setTextSize(TypedValue.COMPLEX_UNIT_SP,LIST_ITEM_SIGNAL_STRENGTH_FONT_SIZE);
 
 		viewHolder.txtScanResultID.setTypeface(typeface);
-		viewHolder.txtScanResultID.setTextSize(TypedValue.COMPLEX_UNIT_SP,getContext().getResources().getInteger(R.integer.LIST_ITEM_SCAN_RECORD_ID_FONT_SIZE));
+		viewHolder.txtScanResultID.setTextSize(TypedValue.COMPLEX_UNIT_SP,LIST_ITEM_SCAN_RECORD_ID_FONT_SIZE);
 
 
 		//: Lets use a StrigBuilder to prevent exceess memory use
@@ -135,6 +138,10 @@ public class BLEScanResultAdapter extends ArrayAdapter {
 	private List<PremPTBLEScanResult> dataSet;
 	private Context mContext;
 	private static final String TAG = "BLEScanResultAdapter";
+	private static final int LIST_ITEM_DEVICENAME_FONT_SIZE = 20;
+	private static final int LIST_ITEM_SIGNAL_STRENGTH_FONT_SIZE = 20;
+	private static final int LIST_ITEM_SCAN_RECORD_ID_FONT_SIZE = 17;
+
 
 
 }
