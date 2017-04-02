@@ -1,4 +1,4 @@
-package com.prempoint.objectman.prempointqualifier;
+package com.prempoint.objectman.prempointqualifier.services;
 
 import android.app.Service;
 import android.bluetooth.*;
@@ -7,28 +7,21 @@ import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.Parcelable;
-import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
-import android.util.TypedValue;
-import android.widget.Toast;
+
+import com.prempoint.objectman.prempointqualifier.model.PremPTBLEScanResult;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-import static android.bluetooth.BluetoothAdapter.*;
-import static android.widget.Toast.LENGTH_LONG;
 import static android.widget.Toast.makeText;
 import static com.prempoint.objectman.prempointqualifier.R.string.PremPTBTNormalDataSend;
 import static com.prempoint.objectman.prempointqualifier.R.string.PremPTBTScannerDataAvailableEvent;
@@ -42,6 +35,7 @@ import static com.prempoint.objectman.prempointqualifier.R.string.PremPTBTScanne
  */
 
 public class PremPTBTScannerService extends Service {
+
 	public PremPTBTScannerService() {
 		super();
 	}

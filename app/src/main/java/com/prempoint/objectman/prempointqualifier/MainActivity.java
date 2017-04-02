@@ -2,8 +2,6 @@ package com.prempoint.objectman.prempointqualifier;
 
 
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.le.ScanRecord;
-import android.bluetooth.le.ScanResult;
 import android.content.BroadcastReceiver;
 
 import android.content.Context;
@@ -25,7 +23,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.io.Serializable;
+import com.prempoint.objectman.prempointqualifier.model.PremPTBLEScanResult;
+import com.prempoint.objectman.prempointqualifier.services.PremPTBTScannerService;
+import com.prempoint.objectman.prempointqualifier.viewsupport.BLEScanResultAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -60,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
     private List<PremPTBLEScanResult> getTestDataModelCollection(){
 
 				List<PremPTBLEScanResult> retVal = new ArrayList<PremPTBLEScanResult>();
-
-			byte[] scanRecord = new byte[] {
+				//: Test ScanRecord
+				byte[] scanRecord = new byte[] {
 							0x02, 0x01, 0x1a, // advertising flags
 							0x05, 0x02, 0x0b, 0x11, 0x0a, 0x11, // 16 bit service uuids
 							0x04, 0x09, 0x50, 0x65, 0x64, // name
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 							0x05, 0x16, 0x0b, 0x11, 0x50, 0x64, // service data
 							0x05, (byte) 0xff, (byte) 0xe0, 0x00, 0x02, 0x15, // manufacturer specific data
 							0x03, 0x50, 0x01, 0x02, // an unknown data type won't cause trouble
-			};
+				};
 
 			PremPTBLEScanResult scanRes = new PremPTBLEScanResult("LG G Vista",24.7f,scanRecord);
 

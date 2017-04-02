@@ -23,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".PremPTBTScannerService"
+        <service android:name=".services.PremPTBTScannerService"
             android:exported="false">
 
         </service>

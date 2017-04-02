@@ -1,4 +1,4 @@
-package com.prempoint.objectman.prempointqualifier;
+package com.prempoint.objectman.prempointqualifier.model;
 
 import java.io.Serializable;
 

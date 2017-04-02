@@ -1,11 +1,8 @@
-package com.prempoint.objectman.prempointqualifier;
+package com.prempoint.objectman.prempointqualifier.viewsupport;
 
-import android.bluetooth.le.ScanResult;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.prempoint.objectman.prempointqualifier.R;
+import com.prempoint.objectman.prempointqualifier.model.PremPTBLEScanResult;
+
 import java.util.List;
 
 /**
@@ -116,6 +115,8 @@ public class BLEScanResultAdapter extends ArrayAdapter {
 		//: Cleanup after usage
 		listItemStr.setLength(0);
 		listItemStr = null;
+
+
 
 		return convertView;
 	}
