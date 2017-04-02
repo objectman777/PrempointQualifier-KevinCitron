@@ -85,8 +85,8 @@ public class PremPTBLEScanResult implements Serializable {
 	private Float signalStength_;
 	private	byte[] scanRecordID_;
 	private final static String TOSTRING_SEPARATOR=",";
-	private final static String HEX_RECORD_ISOLATOR_OPENING="(";
-	private final static String HEX_RECORD_ISOLATOR_CLOSING=")";
+	public  final static String HEX_RECORD_ISOLATOR_OPENING="(";
+	public final static String HEX_RECORD_ISOLATOR_CLOSING=")";
 	private final static String BLE_SCAN_RECORD_UNAVAILABLE_STRING="BLE Scan record id, not avalable";
 	private final static String TOSTRING_RECORD_START = "[";
 	private final static String TOSTRING_RECORD_END = "]";

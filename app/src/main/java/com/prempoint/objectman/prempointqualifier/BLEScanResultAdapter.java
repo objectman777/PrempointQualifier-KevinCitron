@@ -62,24 +62,57 @@ public class BLEScanResultAdapter extends ArrayAdapter {
 		}
 
 		else {
-
+			//: Get the view container from the cache
 			viewHolder = (ViewHolder) convertView.getTag();
 			result=convertView;
 		}
 		//: Custom font stuff, just for fun
-		Typeface typeface= Typeface.createFromAsset(getContext().getAssets(), "fonts/WORLDOFW.TTF");
+		Typeface typeface= Typeface.createFromAsset(getContext().getAssets(),getContext().getString(R.string.DEFAULT_LIST_ITEM_FONT1));
 		viewHolder.txtDeviceName.setTypeface(typeface);
-		viewHolder.txtDeviceName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+		viewHolder.txtDeviceName.setTextSize(TypedValue.COMPLEX_UNIT_SP,getContext().getResources().getInteger(R.integer.LIST_ITEM_DEVICENAME_FONT_SIZE));
 
 		viewHolder.txtRSSIValue.setTypeface(typeface);
-		viewHolder.txtRSSIValue.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+		viewHolder.txtRSSIValue.setTextSize(TypedValue.COMPLEX_UNIT_SP,getContext().getResources().getInteger(R.integer.LIST_ITEM_SIGNAL_STRENGTH_FONT_SIZE));
 
 		viewHolder.txtScanResultID.setTypeface(typeface);
-		viewHolder.txtScanResultID.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
+		viewHolder.txtScanResultID.setTextSize(TypedValue.COMPLEX_UNIT_SP,getContext().getResources().getInteger(R.integer.LIST_ITEM_SCAN_RECORD_ID_FONT_SIZE));
 
-		viewHolder.txtDeviceName.setText("DEVICE NAME: " + dataModel.getDeviceName());
-		viewHolder.txtRSSIValue.setText("SIGNAL STRENGTH: " + dataModel.getSignalStength().toString());
-		viewHolder.txtScanResultID.setText("SCAN RECORD ID: ( " + dataModel.getScanRecordIDAsHexString() + " )");
+
+		//: Lets use a StrigBuilder to prevent exceess memory use
+		//: Lots of catenation happening, creates multiple
+		//: StringBuilders/StringBuffer instances behind the scenes
+		StringBuilder listItemStr = new StringBuilder();
+		//: A lot of the string handler stuff
+		//: could be refactored into their own respective meothods
+		//: ie getDeviceHeadingStrUsing(context,dataModel)....etc
+		//: But. For the sake of breveity. I'm not going to
+		listItemStr.append(getContext().getString(R.string.LIST_ITEM_DEVICE_NAME_HEADING));
+		listItemStr.append(" "); //: Add a space, to make it more legible to view
+		listItemStr.append(dataModel.getDeviceName());
+
+		viewHolder.txtDeviceName.setText(listItemStr.toString());
+
+		listItemStr.setLength(0);//: Reuse the listItemStr;
+
+		listItemStr.append(getContext().getString(R.string.LIST_ITEM_DEVICE_SIGNAL_STRENGTH_HEADING));
+		listItemStr.append(" "); //: Add a space, to make it more legible to view
+		listItemStr.append(dataModel.getSignalStength().toString());
+		viewHolder.txtRSSIValue.setText(listItemStr.toString());
+
+		listItemStr.setLength(0); //: Reuse the listItemStr;
+
+		listItemStr.append(getContext().getString(R.string.LIST_ITEM_DEVICE_RECORDID_HEADING));
+		listItemStr.append(" "); //: Add a space, to make it more legible to view
+		listItemStr.append(PremPTBLEScanResult.HEX_RECORD_ISOLATOR_OPENING);
+		listItemStr.append(" "); //: Add a space, to make it more legible to view
+		listItemStr.append(dataModel.getScanRecordIDAsHexString());
+		listItemStr.append(PremPTBLEScanResult.HEX_RECORD_ISOLATOR_CLOSING);
+
+		viewHolder.txtScanResultID.setText(listItemStr.toString());
+
+		//: Cleanup after usage
+		listItemStr.setLength(0);
+		listItemStr = null;
 
 		return convertView;
 	}

@@ -16,5 +16,12 @@
     <string name="no_bt_adapter_error_message">BlueTooth is unsupported on your device</string>
     <string name="bt.not_turnedon_error_message">Turn on BlueTooth to proceed</string>
     <string name="ble_unsupported_error_message">BLE Scans are unsupported on your device</string>
+    <string name="DEFAULT_LIST_ITEM_FONT1">fonts/WORLDOFW.TTF</string>
+    <string name="LIST_ITEM_DEVICE_NAME_HEADING">DEVICE NAME:</string>
+    <string name="LIST_ITEM_DEVICE_SIGNAL_STRENGTH_HEADING">SIGNAL STRENGTH:</string>
+    <string name="LIST_ITEM_DEVICE_RECORDID_HEADING">SCAN RECORD ID:</string>
+
+
+
 
 </resources>
