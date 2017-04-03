@@ -22,7 +22,7 @@ import java.util.List;
  * So. This is a piece of cake
  */
 
-public class BLEScanResultAdapter extends ArrayAdapter {
+public class BLEScanResultListAdapter extends ArrayAdapter {
 
 
 	@Override
@@ -30,12 +30,11 @@ public class BLEScanResultAdapter extends ArrayAdapter {
 		return super.getItemId(position);
 	}
 
-	public BLEScanResultAdapter(List<PremPTBLEScanResult> data, Context context) {
+	public BLEScanResultListAdapter(List<PremPTBLEScanResult> data, Context context) {
 
 		super(context, R.layout.scanresult_row_item, data);
 
 		this.dataSet = data;
-		this.mContext=context;
 
 	}
 
@@ -129,6 +128,7 @@ public class BLEScanResultAdapter extends ArrayAdapter {
 		if(defaultCustomTypeface != null)
 				return defaultCustomTypeface;
 
+			//: There should be no failure here. This font is embedded.
 			defaultCustomTypeface = Typeface.createFromAsset(getContext().getAssets(),getContext().getString(R.string.DEFAULT_LIST_ITEM_FONT1));
 
 			return defaultCustomTypeface;
@@ -150,9 +150,8 @@ public class BLEScanResultAdapter extends ArrayAdapter {
 	}
 
 	private List<PremPTBLEScanResult> dataSet;
-	private Context mContext;
 	private Typeface defaultCustomTypeface;
-	private static final String TAG = "BLEScanResultAdapter";
+	private static final String TAG = "BLEScanResultListAdapter";
 	private static final int LIST_ITEM_DEVICENAME_FONT_SIZE = 20;
 	private static final int LIST_ITEM_SIGNAL_STRENGTH_FONT_SIZE = 20;
 	private static final int LIST_ITEM_SCAN_RECORD_ID_FONT_SIZE = 17;

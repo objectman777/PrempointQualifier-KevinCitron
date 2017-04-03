@@ -25,7 +25,7 @@ import android.widget.Toast;
 
 import com.prempoint.objectman.prempointqualifier.model.PremPTBLEScanResult;
 import com.prempoint.objectman.prempointqualifier.services.PremPTBTScannerService;
-import com.prempoint.objectman.prempointqualifier.viewsupport.BLEScanResultAdapter;
+import com.prempoint.objectman.prempointqualifier.viewsupport.BLEScanResultListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         scannerOutputList = (ListView) findViewById(R.id.scannerOutputList);
-				scanResultArrayAdapter= new BLEScanResultAdapter(this.getTestDataModelCollection(),getApplicationContext());
+				scanResultArrayAdapter= new BLEScanResultListAdapter(this.getTestDataModelCollection(),getApplicationContext());
         scannerOutputList.setAdapter(scanResultArrayAdapter);
     }
 
