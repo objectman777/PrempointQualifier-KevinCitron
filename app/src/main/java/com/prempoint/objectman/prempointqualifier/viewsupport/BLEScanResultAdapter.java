@@ -69,14 +69,17 @@ public class BLEScanResultAdapter extends ArrayAdapter {
 			result=convertView;
 		}
 		//: Custom font stuff, just for fun
-		Typeface typeface= Typeface.createFromAsset(getContext().getAssets(),getContext().getString(R.string.DEFAULT_LIST_ITEM_FONT1));
-		viewHolder.txtDeviceName.setTypeface(typeface);
+		//: make this an instance var.
+		//: not need to keep creating a typeface
+
+
+		viewHolder.txtDeviceName.setTypeface(this.getDefaultTypeface());
 		viewHolder.txtDeviceName.setTextSize(TypedValue.COMPLEX_UNIT_SP,LIST_ITEM_DEVICENAME_FONT_SIZE);
 
-		viewHolder.txtRSSIValue.setTypeface(typeface);
+		viewHolder.txtRSSIValue.setTypeface(this.getDefaultTypeface());
 		viewHolder.txtRSSIValue.setTextSize(TypedValue.COMPLEX_UNIT_SP,LIST_ITEM_SIGNAL_STRENGTH_FONT_SIZE);
 
-		viewHolder.txtScanResultID.setTypeface(typeface);
+		viewHolder.txtScanResultID.setTypeface(this.getDefaultTypeface());
 		viewHolder.txtScanResultID.setTextSize(TypedValue.COMPLEX_UNIT_SP,LIST_ITEM_SCAN_RECORD_ID_FONT_SIZE);
 
 
@@ -121,6 +124,16 @@ public class BLEScanResultAdapter extends ArrayAdapter {
 		return convertView;
 	}
 
+	private Typeface getDefaultTypeface(){
+
+		if(defaultCustomTypeface != null)
+				return defaultCustomTypeface;
+
+			defaultCustomTypeface = Typeface.createFromAsset(getContext().getAssets(),getContext().getString(R.string.DEFAULT_LIST_ITEM_FONT1));
+
+			return defaultCustomTypeface;
+	}
+
 
 	@Nullable
 	@Override
@@ -138,6 +151,7 @@ public class BLEScanResultAdapter extends ArrayAdapter {
 
 	private List<PremPTBLEScanResult> dataSet;
 	private Context mContext;
+	private Typeface defaultCustomTypeface;
 	private static final String TAG = "BLEScanResultAdapter";
 	private static final int LIST_ITEM_DEVICENAME_FONT_SIZE = 20;
 	private static final int LIST_ITEM_SIGNAL_STRENGTH_FONT_SIZE = 20;
