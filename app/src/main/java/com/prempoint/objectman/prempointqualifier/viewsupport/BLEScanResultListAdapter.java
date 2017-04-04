@@ -71,15 +71,16 @@ public class BLEScanResultListAdapter extends ArrayAdapter {
 		//: make this an instance var.
 		//: not need to keep creating a typeface
 
+		//: The font size needs to be based on the size of the screen
 
 		viewHolder.txtDeviceName.setTypeface(this.getDefaultTypeface());
-		viewHolder.txtDeviceName.setTextSize(TypedValue.COMPLEX_UNIT_SP,LIST_ITEM_DEVICENAME_FONT_SIZE);
+		viewHolder.txtDeviceName.setTextSize(TypedValue.COMPLEX_UNIT_PX,LIST_ITEM_DEVICENAME_FONT_SIZE);
 
 		viewHolder.txtRSSIValue.setTypeface(this.getDefaultTypeface());
-		viewHolder.txtRSSIValue.setTextSize(TypedValue.COMPLEX_UNIT_SP,LIST_ITEM_SIGNAL_STRENGTH_FONT_SIZE);
+		viewHolder.txtRSSIValue.setTextSize(TypedValue.COMPLEX_UNIT_PX,LIST_ITEM_SIGNAL_STRENGTH_FONT_SIZE);
 
 		viewHolder.txtScanResultID.setTypeface(this.getDefaultTypeface());
-		viewHolder.txtScanResultID.setTextSize(TypedValue.COMPLEX_UNIT_SP,LIST_ITEM_SCAN_RECORD_ID_FONT_SIZE);
+		viewHolder.txtScanResultID.setTextSize(TypedValue.COMPLEX_UNIT_PX,LIST_ITEM_SCAN_RECORD_ID_FONT_SIZE);
 
 
 		//: Lets use a StrigBuilder to prevent exceess memory use
@@ -152,8 +153,8 @@ public class BLEScanResultListAdapter extends ArrayAdapter {
 	private List<PremPTBLEScanResult> dataSet;
 	private Typeface defaultCustomTypeface;
 	private static final String TAG = "BLEScanResultListAdapter";
-	private static final int LIST_ITEM_DEVICENAME_FONT_SIZE = 20;
-	private static final int LIST_ITEM_SIGNAL_STRENGTH_FONT_SIZE = 20;
+	private static final int LIST_ITEM_DEVICENAME_FONT_SIZE = 23;
+	private static final int LIST_ITEM_SIGNAL_STRENGTH_FONT_SIZE = 23;
 	private static final int LIST_ITEM_SCAN_RECORD_ID_FONT_SIZE = 17;
 
 
