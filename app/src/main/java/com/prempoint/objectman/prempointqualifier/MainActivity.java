@@ -8,8 +8,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -193,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
 
 	public void startButtonBlink() {
 
-		//set a new Timer
+		//: Create a new Timer
 
 		blinkingBtnTimer = new Timer();
 
@@ -205,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-		//schedule the timer, after the first 5000ms the TimerTask will run every 10000ms
+		//schedule the timer, after the first 5000ms the TimerTask will run every BLINK_DELAY
 		blinkingBtnTimer.schedule(blinkingBtnTimerTask, 0, (long) BLINK_DELAY); //
 
 	}
@@ -220,17 +223,38 @@ public class MainActivity extends AppCompatActivity {
 
 				//use a handler to run a toast that shows the current timestamp
 
-				blinkinBtnHandler.post(new Runnable() {
+				runOnUiThread(new Runnable() {
 
 					public void run() {
 
-						if(scanBtn.getCurrentTextColor() == getResources().getColor(R.color.premScanButtonFlashOffColor)){
-							scanBtn.setTextColor(getResources().getColor(R.color.premScanButtonFlashOnColor));
+
+
+
+						if(scanBtn.getText().equals(SCANNING_LABEL)){
+
+							scanBtn.setText(IN_PROGRESS_LABEL);
 						}
+
 						else {
-							scanBtn.setTextColor(getResources().getColor(R.color.premScanButtonFlashOffColor));
+
+
+							scanBtn.setText(SCANNING_LABEL);
+
 
 						}
+
+						/*
+						if (Build.VERSION.SDK_INT >= 23) {
+								ContextCompat.getColor(getApplicationContext(),R.color.premScanButtonFlashOffColor);
+						}
+
+						else {
+
+								scanBtn.setTextColor(getResources().getColor(R.color.premScanButtonFlashOnColor));
+						}
+						*/
+
+
 
 
 					}
@@ -343,12 +367,15 @@ public class MainActivity extends AppCompatActivity {
 
     private BluetoothAdapter myBluetoothAdapter;
     private ListView scannerOutputList;
-		private Timer blinkingBtnTimer;
+
+
 		private Button scanBtn;// Holding on to a reference, to eliminate he need for repetitive resource lookups
 
+		private Timer blinkingBtnTimer;
 		private TimerTask blinkingBtnTimerTask;
-		final Handler blinkinBtnHandler = new Handler();
 		final static double BLINK_DELAY = (1.4 * 1000);
+		final static String SCANNING_LABEL="Scanning";
+		final static String IN_PROGRESS_LABEL="In Progress";
 
 	private ArrayAdapter<PremPTBLEScanResult> scanResultArrayAdapter;
     private static final String TAG = "MainActivity";
